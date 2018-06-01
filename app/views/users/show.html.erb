@@ -1,1 +1,9 @@
 <h3>Welcome to Blogger <%= @user.username %> </h3>
+
+<%= link_to "Post article", new_article_path %><br><br>
+
+<h3>Posted Articles</h3>
+<% @user.articles.each do |article| %>
+  <h4><%= article.title %></h4>
+  <p><%= article.body %></p><br>
+<% end %>

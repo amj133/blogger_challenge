@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
 
   resources :users, only: [:show, :create]
+  resources :articles, only: [:new, :create]
 end
