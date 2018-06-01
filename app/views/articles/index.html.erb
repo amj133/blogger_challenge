@@ -1,0 +1,49 @@
+<h3>All articles</h3>
+
+<% @articles.each do |article| %>
+  <div class="article-title">
+    <h4><%= article.title %></h4>
+    <p class="article-body">
+      <%= article.body %>
+      <div class="comment-form">
+        <input type="text" name="comment-body" value="body" id="comment-body"><br>
+        <button onclick="postComment()" id="post-comment">Post Comment</button>
+      </div>
+    </p><br>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('.article-body').hide()
+  $('.comment-form').hide()
+
+  let titles = $(".article-title")
+
+  titles.click(function(event) {
+    var isH4 = $(event.target).is('.article-title h4');
+    if (isH4) {
+      $('.article-body', this).toggle();
+      $('.comment-form', this).toggle();
+    }
+  })
+
+  const postPayload = (body) => {
+    return { type: 'POST',
+             url: "/api/v1/comments",
+             data: body
+           }
+  }
+
+  const getCommentBody = () => {
+    let body = $("#comment-body")
+    return body[0].value
+  }
+
+  const postComment = () => {
+    const payLoad = {}
+    payLoad["comment_body"] = getCommentBody()
+    $.ajax(postPayload(payLoad))
+    alert('Comment added to the article!')
+  }
+
+</script>

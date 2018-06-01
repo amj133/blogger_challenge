@@ -1,6 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :require_current_user
 
+  def index
+    @articles = Article.all
+  end
+
   def new
     @article = Article.new
   end

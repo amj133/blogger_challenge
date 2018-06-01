@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.article-title {
+  text-decoration: underline;
+}
+
+.article-title .article-body {
+  display: none;
+}
